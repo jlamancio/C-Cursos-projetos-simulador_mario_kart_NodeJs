@@ -46,21 +46,68 @@ const player6 = {
     pontos: 0,
 };
 
-async function rollDice(){                  // rolagem do dado 
+async function rollDice() {                  // rolagem do dado 
     return Math.floor(Math.random() * 6) + 1;
 }
 
-async function playRaceEngine(character1, character2){
-    for (let round = 1; round <= 5; round++)
-        console.log(`🏁 Rodada ${round}`);
-    // sortear bloco
+
+async function getRandomBlock() {
+    let random = Math.random()
+    let result
+    switch (true) {
+        case random < 0.33:
+            result = "RETA"
+            break;
+        case random < 0.66:
+            result = "CURVA"
+            break;
+        default:
+            result = "CONFRONTO"
+            break;
+    }
+    return result;
 }
 
-(async function main(){                    // função auto-invocável
+
+async function playRaceEngine(character1, character2) {
+    console.log('Inicio da execução da corrida')
+    // sortear bloco
+    for(let round=1; round <=5; round++){              
+        console.log(`🏁🏍️  - Rodada: ${round}`);
+        let block = await getRandomBlock();
+        console.log(`Bloco: ${block}`)
+
+        // rolar dados
+        let diceResult1 = await rollDice();
+        let diceResult2 = await rollDice();
+
+        // teste de habilidades
+        let totalTestSkill1 = 0;
+        let totalTestSkill2 = 0;
+
+        if(block === "RETA"){
+            totalTestSkill1 = diceResult1 + character1.velocidade
+            totalTestSkill2 = diceResult2 + character2.velocidade
+        }
+        if(block === "CURVA"){
+            totalTestSkill1 = diceResult1 + character1.manobrabilidade
+            totalTestSkill2 = diceResult2 + character2.manobrabilidade
+        }
+        if(block === "CONFRONTO"){
+            let powerResult1 = diceResult1 + character1.poder 
+            let powerResult2 = diceResult2 + character2.poder 
+        }
+
+    }
+}
+
+// --- função principal 
+
+(async function main() {                    // função auto-invocável
     console.log(
-       `🏁🚨 Corrida entre ${player1.nome} e ${player2.nome} começando..\n`
+        `🏁🚨 Corrida entre ${player1.nome} e ${player2.nome} começando..\n`
     );
-    
+
     await playRaceEngine(player1, player2)    // function chain 
 
 })();
