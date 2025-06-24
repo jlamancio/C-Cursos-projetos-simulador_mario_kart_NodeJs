@@ -1,0 +1,13 @@
+{
+  "name": "simulador_mario_kart_nodejs",
+  "version": "1.0.0",
+  "description": "Criação de um jogo com NodeJs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Amancio",
+  "license": "ISC",
+  "type": "commonjs"
+}
