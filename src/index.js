@@ -69,10 +69,10 @@ async function getRandomBlock() {
 }
 
 async function logRollResult(characterName, block, diceResult, attribute) {
-    console.log(`${characterName} 🎲 rolou um dado de ${block} ${diceResult}`)
-
+    console.log(`${characterName} 🎲 rolou um dado de ${block} ${diceResult} +
+        ${attribute} = ${diceResult + attribute}`)
+        
 }
-
 
 async function playRaceEngine(character1, character2) {
     console.log('Inicio da execução da corrida')
@@ -114,7 +114,7 @@ async function playRaceEngine(character1, character2) {
             totalTestSkill1 = diceResult1 + character1.manobrabilidade
             totalTestSkill2 = diceResult2 + character2.manobrabilidade
 
-              await logRollResult(
+            await logRollResult(
                 character1.nome,
                 "manobrabilidade",
                 diceResult1,
@@ -139,7 +139,7 @@ async function playRaceEngine(character1, character2) {
     }
 }
 
-// --- função principal 
+// ----------------- >>>>>>>  função principal 
 
 (async function main() {                    // função auto-invocável
     console.log(
