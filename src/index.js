@@ -71,7 +71,7 @@ async function getRandomBlock() {
 async function logRollResult(characterName, block, diceResult, attribute) {
     console.log(`${characterName} 🎲 rolou um dado de ${block} ${diceResult} +
         ${attribute} = ${diceResult + attribute}`)
-        
+
 }
 
 async function playRaceEngine(character1, character2) {
@@ -134,21 +134,49 @@ async function playRaceEngine(character1, character2) {
             let powerResult1 = diceResult1 + character1.poder
             let powerResult2 = diceResult2 + character2.poder
 
+            console.log(`${character1.nome} confrontou com ${character2.nome} ! 🥊`);
+
+            await logRollResult(
+                character1.nome,
+                "poder",
+                diceResult1,
+                character1.poder
+            );
+
+            await logRollResult(
+                character2.nome,
+                "poder",
+                diceResult2,
+                character2.poder
+            );
+
+            // if ternário
+
+            character2.pontos -= powerResult1 > powerResult2 && character2.pontos > 0 ? 1 : 0;
+            character1.pontos -= powerResult2 > powerResult1 && character1.pontos > 0 ? 1 : 0;
+            console.log(powerResult2 === powerResult1 ? 'Confronto empatado! Nenhum jogador pontuou' : "");
+
         }
 
-        if(totalTestSkill1 > totalTestSkill2){
+        if (totalTestSkill1 > totalTestSkill2) {
             console.log(`${character1.nome} marcou um ponto !`);
             character1.pontos++;
         }
-        else if(totalTestSkill2 > totalTestSkill1){
+        else if (totalTestSkill2 > totalTestSkill1) {
             console.log(`${character2.nome} marcou um ponto`);
             character2.pontos++;
         }
 
         console.log('______________________________________________________________')
 
+
     }
+
+
+
+
 }
+
 
 // ----------------- >>>>>>>  função principal 
 
