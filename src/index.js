@@ -157,15 +157,15 @@ async function playRaceEngine(character1, character2) {
                 console.log(powerResult2 === powerResult1 ? 'Confronto empatado! Nenhum jogador pontuou' : "");
             */
 
-            if(powerResult1 > powerResult2 && character2.pontos > 0 ) {
+            if (powerResult1 > powerResult2 && character2.pontos > 0) {
                 console.log(`${character1.nome} venceu o confronto ${character2.nome} perdeu 1 ponto 🐢`);
                 character2.pontos--;
             }
 
 
-             if(powerResult2 > powerResult1 && character1.pontos > 0 ) {
+            if (powerResult2 > powerResult1 && character1.pontos > 0) {
                 console.log(`${character2.nome} venceu o confronto ${character1.nome} perdeu 1 ponto 🐢`);
-                character1.pontos--;
+                character.pontos--;
             }
 
         }
@@ -185,6 +185,24 @@ async function playRaceEngine(character1, character2) {
 
 }
 
+async function declareWinner(character1, character2) {
+    
+    console.log('**********   Resultado final   ********** 🏆 \n')
+    console.log(`${character1.nome}: ${character1.pontos} ponto(s)`)
+    console.log(`${character2.nome}: ${character2.pontos} ponto(s)`)
+
+    if (character1.pontos > character2.pontos) {
+        console.log(`\n${character1.nome} venceu a corrida!! Parabens 🎉🎉🎉`);
+    }
+    else if (character2.pontos > character1.pontos) {
+        console.log(`\n${character2.nome} venceu a corrida!! Parabens 🎉🎉🎉`);
+    }
+    else{
+        console.log('A corrida terminou empatada !');
+    }
+
+}
+
 
 // ----------------- >>>>>>>  função principal 
 
@@ -194,6 +212,7 @@ async function playRaceEngine(character1, character2) {
     );
 
     await playRaceEngine(player1, player2)    // function chain 
+    await declareWinner(player1, player2)
 
 })();
 
