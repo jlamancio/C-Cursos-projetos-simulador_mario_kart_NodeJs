@@ -149,12 +149,24 @@ async function playRaceEngine(character1, character2) {
                 diceResult2,
                 character2.poder
             );
-
+            /*
             // if ternário
 
-            character2.pontos -= powerResult1 > powerResult2 && character2.pontos > 0 ? 1 : 0;
-            character1.pontos -= powerResult2 > powerResult1 && character1.pontos > 0 ? 1 : 0;
-            console.log(powerResult2 === powerResult1 ? 'Confronto empatado! Nenhum jogador pontuou' : "");
+                character2.pontos -= powerResult1 > powerResult2 && character2.pontos > 0 ? 1 : 0;
+                character1.pontos -= powerResult2 > powerResult1 && character1.pontos > 0 ? 1 : 0;
+                console.log(powerResult2 === powerResult1 ? 'Confronto empatado! Nenhum jogador pontuou' : "");
+            */
+
+            if(powerResult1 > powerResult2 && character2.pontos > 0 ) {
+                console.log(`${character1.nome} venceu o confronto ${character2.nome} perdeu 1 ponto 🐢`);
+                character2.pontos--;
+            }
+
+
+             if(powerResult2 > powerResult1 && character1.pontos > 0 ) {
+                console.log(`${character2.nome} venceu o confronto ${character1.nome} perdeu 1 ponto 🐢`);
+                character1.pontos--;
+            }
 
         }
 
@@ -169,11 +181,7 @@ async function playRaceEngine(character1, character2) {
 
         console.log('______________________________________________________________')
 
-
     }
-
-
-
 
 }
 
